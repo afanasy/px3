@@ -36,7 +36,7 @@ module.exports = function (config) {
         Sign: crypto.createHmac('sha512', secret).update(query).digest('hex')
       }
     }
-    console.log(request, query, config)
+
     var req = https.request(request, function (res) {
       var data = ''
       res.setEncoding('utf8')
