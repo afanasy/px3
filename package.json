@@ -1,0 +1,8 @@
+{
+  "name": "px3",
+  "version": "1.0.0",
+  "description": "Lightweight Poloniex client",
+  "repository": "afanasy/px3",
+  "author": "Afanasii Kurakin <afanasy@gmail.com>",
+  "license": "MIT"
+}
