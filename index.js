@@ -16,14 +16,13 @@ module.exports = function (config) {
 
     var key = d.key || config.key
     var secret = d.secret || config.secret
-    delete d.key
+    delete d.key //set to undefined?
     delete d.secret
     d.command = command
     d.nonce = (Date.now() * 1000) + Math.round(((process.hrtime()[1] / 1e6) % 1) * 1e3)
     var query = querystring.stringify(d)
 
     var request = {
-      method: 'GET',
       hostname: 'poloniex.com',
       path: '/public?' + query
     }
@@ -45,13 +44,13 @@ module.exports = function (config) {
         try {data = JSON.parse(data)}
         catch (e) {
           if (res.statusCode == 200)
-            return done(e)
+            return done(e, null, res)
         }
         if (data && data.error)
-          return done(data.error)
+          return done(data.error, null, res)
         if (res.statusCode != 200)
-          return done('Status code ' + res.statusCode)
-        done(null, data)
+          return done('Status code ' + res.statusCode, null, res)
+        done(null, data, res)
       })
     })
     req.setTimeout(config.timeout)
