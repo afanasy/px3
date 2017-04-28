@@ -16,10 +16,11 @@ module.exports = function (config) {
 
     var key = d.key || config.key
     var secret = d.secret || config.secret
-    delete d.key //set to undefined?
+    delete d.key
     delete d.secret
     d.command = command
     d.nonce = (Date.now() * 1000) + Math.round(((process.hrtime()[1] / 1e6) % 1) * 1e3)
+
     var query = querystring.stringify(d)
 
     var request = {
