@@ -7,6 +7,7 @@ module.exports = function (config) {
   config = config || {}
   if (typeof config.timeout == 'undefined')
     config.timeout = 10000
+  config.tradingApi = config.tradingApi || ['returnBalances', 'returnCompleteBalances', 'returnDepositAddresses', 'generateNewAddress', 'returnDepositsWithdrawals', 'returnOpenOrders', 'returnOrderTrades', 'buy', 'sell', 'cancelOrder', 'moveOrder', 'withdraw', 'returnAvailableAccountBalances', 'returnTradableBalances', 'transferBalance', 'returnMarginAccountSummary', 'marginBuy', 'marginSell', 'getMarginPosition', 'closeMarginPosition', 'createLoanOffer', 'cancelLoanOffer', 'returnOpenLoanOffers', 'returnActiveLoans', 'toggleAutoRenew', 'returnTradeHistory', 'returnLendingHistory']
   return function (command, d, done) {
     if (typeof d == 'function') {
       done = d
@@ -27,7 +28,7 @@ module.exports = function (config) {
       hostname: 'poloniex.com',
       path: '/public?' + query
     }
-    if (['returnBalances', 'returnCompleteBalances', 'returnDepositAddresses', 'generateNewAddress', 'returnDepositsWithdrawals', 'returnOpenOrders', 'returnOrderTrades', 'buy', 'sell', 'cancelOrder', 'moveOrder', 'withdraw', 'returnAvailableAccountBalances', 'returnTradableBalances', 'transferBalance', 'returnMarginAccountSummary', 'marginBuy', 'marginSell', 'getMarginPosition', 'closeMarginPosition', 'createLoanOffer', 'cancelLoanOffer', 'returnOpenLoanOffers', 'returnActiveLoans', 'toggleAutoRenew', 'returnTradeHistory'].indexOf(command) != -1) {
+    if (config.tradingApi.indexOf(command) != -1) {
       request.method = 'POST'
       request.path = '/tradingApi'
       request.headers = {

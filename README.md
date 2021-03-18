@@ -1,7 +1,7 @@
 # px3
 Lightweight Poloniex client
 
- - Zero deps
+ - 0 deps
  - Battle tested
  - No Push API
 
@@ -22,4 +22,4 @@ px3('buy', {currencyPair: 'BTC_ETH', rate: 0.03911613, amount: 1.23456789}, func
 })
 ```
 
-For the full Poloniex API documentation, please refer to https://poloniex.com/support/api/
+For the full Poloniex API documentation, please refer to https://docs.poloniex.com/
